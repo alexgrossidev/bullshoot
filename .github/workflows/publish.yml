@@ -1,0 +1,35 @@
+name: Publish
+
+# Publishes to npm when a GitHub Release is created.
+# Requires an NPM_TOKEN secret with publish rights to the @alegrossi2001 scope.
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # enables npm provenance
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run check-types
+
+      - run: npm run build
+
+      # Version must match the release tag (e.g. tag v0.1.0 -> package 0.1.0).
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

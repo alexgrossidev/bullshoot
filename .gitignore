@@ -1,0 +1,6 @@
+node_modules
+dist
+*.log
+!.env.example
+.DS_Store
+config.bat

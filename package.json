@@ -1,0 +1,84 @@
+{
+  "name": "@alegrossi2001/bullshoot",
+  "version": "0.1.0",
+  "description": "Type-safe BullMQ + Redis setup in minutes. Define jobs and workers in your own code \u2014 never touch the library.",
+  "keywords": [
+    "bullmq",
+    "redis",
+    "queue",
+    "jobs",
+    "workers",
+    "typescript",
+    "zod",
+    "type-safe"
+  ],
+  "author": "alegrossi2001",
+  "license": "MIT",
+  "homepage": "https://github.com/alegrossi2001/bullshoot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alegrossi2001/bullshoot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alegrossi2001/bullshoot/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./dashboard": {
+      "types": "./dist/dashboard/index.d.ts",
+      "import": "./dist/dashboard/index.js",
+      "require": "./dist/dashboard/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit",
+    "check-types:examples": "tsc --noEmit -p tsconfig.examples.json",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "bullmq": "^5.72.1",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2"
+  },
+  "peerDependencies": {
+    "zod": "^3.23.0 || ^4.0.0"
+  },
+  "optionalDependencies": {
+    "@bull-board/api": "^7.0.0",
+    "@bull-board/express": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@bull-board/api": "^7.0.0",
+    "@bull-board/express": "^7.0.0",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.5",
+    "zod": "^3.25.76"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

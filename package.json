@@ -48,7 +48,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "node api.js && tsup --watch",
+    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "check-types:examples": "tsc --noEmit -p tsconfig.examples.json",
     "prepublishOnly": "npm run build"
